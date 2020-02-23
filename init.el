@@ -6,6 +6,9 @@
 (package-initialize)
 
 (setq-default custom-file (expand-file-name ".custom.el" user-emacs-directory))
+(setq python-shell-interpreter "/usr/bin/python3")
+
+(global-display-line-numbers-mode)
 
 ;; Bootstrap use-package
 (unless (package-installed-p 'use-package)
@@ -21,10 +24,11 @@
 ;; Pull in ./lisp/*
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+(use-package all-the-icons)
+(require 'init-neotree)
 (require 'init-theme)
 (require 'init-ivy)
 (require 'init-which-key)
-;(require 'init-treemacs)
 
 
 ;; Show whitespace
@@ -45,3 +49,8 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
