@@ -27,9 +27,13 @@
 (use-package all-the-icons)
 (require 'init-neotree)
 (require 'init-theme)
-(require 'init-ivy)
+;;(require 'init-ivy)
 (require 'init-which-key)
 
+(use-package ace-window
+   :config
+  (setq aw-dispatch-always t))
+(global-set-key (kbd "M-o") 'ace-window)
 
 ;; Show whitespace
 (setq whitespace-style (quote (face spaces tabs space-mark tab-mark)))
@@ -42,9 +46,6 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
-;; Allow select window with arrows
-(windmove-default-keybindings)
-
 ;; Enable some keybindings
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -54,3 +55,6 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+
+
+(setq max-mini-window-height 0.5)
